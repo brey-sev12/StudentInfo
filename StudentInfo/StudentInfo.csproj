@@ -75,7 +75,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student.cs" />
+    <Compile Include="Models\Student.cs" />
     <EmbeddedResource Include="Views\StudentInfo.resx">
       <DependentUpon>StudentInfo.cs</DependentUpon>
     </EmbeddedResource>
