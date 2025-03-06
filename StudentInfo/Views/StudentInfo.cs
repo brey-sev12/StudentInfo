@@ -16,6 +16,7 @@ namespace StudentInfo
         public StudentInfo()
         {
             InitializeComponent();
+            gcStudentInfo.DataSource = students;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -25,41 +26,76 @@ namespace StudentInfo
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Student student = new Student();
+            // Check if any required field is empty or whitespace
+            if (string.IsNullOrWhiteSpace(teFirstName.Text) ||
+                string.IsNullOrWhiteSpace(teMiddleName.Text) ||
+                string.IsNullOrWhiteSpace(teLastName.Text) ||
+                string.IsNullOrWhiteSpace(cbeSex.Text) ||
+                string.IsNullOrWhiteSpace(cbeCivilStatus.Text) ||
+                string.IsNullOrWhiteSpace(teAddress.Text) ||
+                string.IsNullOrWhiteSpace(teContact.Text))
+            {
+                XtraMessageBox.Show("Please fill in all required fields before adding.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if validation fails
+            }
 
-            //set Student properties based on text box values
-            student.FirstName = teFirstName.Text;
-            student.MiddleName = teMiddleName.Text;
-            student.LastName = teLastName.Text;
-            student.Contact = teContact.Text;
-            student.Address = teAddress.Text;
+            // Create and set Student object
+            Student student = new Student
+            {
+                FirstName = teFirstName.Text,
+                MiddleName = teMiddleName.Text,
+                LastName = teLastName.Text,
+                Sex = cbeSex.Text,
+                CivilStatus = cbeCivilStatus.Text,
+                Address = teAddress.Text,
+                Contact = teContact.Text
+            };
 
-            //add Student object to the list
+            // Add Student to the list
             students.Add(student);
-            
+
             XtraMessageBox.Show("Student Added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            //clear textboxes
+            // Clear input fields
             ClearStudentFields();
 
-            //refresh the grid control to reflect changes
+            // Refresh grid control
             gcStudentInfo.RefreshDataSource();
-
         }
         private void ClearStudentFields()
         {
             teFirstName.Text = string.Empty;
             teMiddleName.Text = string.Empty;
             teLastName.Text = string.Empty;
+            cbeSex.Text = string.Empty;
+            cbeCivilStatus.Text = string.Empty;
             teContact.Text = string.Empty;
             teAddress.Text = string.Empty;
-            
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DeleteForm delete = new DeleteForm();    // Opens the Delete form for deleting a student
-            delete.ShowDialog();    // Show the Delete form as a modal dialog
+            // Get the selected row index from GridView
+            int selectedRowHandle = gvStudentInfo.FocusedRowHandle;
+
+            if (selectedRowHandle >= 0) // Ensure a row is selected
+            {
+                Student selectedStudent = (Student)gvStudentInfo.GetRow(selectedRowHandle);
+
+                if (selectedStudent != null)
+                {
+                    // Remove the student from the list
+                    students.Remove(selectedStudent);
+
+                    // Refresh the grid control
+                    gcStudentInfo.RefreshDataSource();
+
+                    XtraMessageBox.Show("Student Deleted Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("Please select a student to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
