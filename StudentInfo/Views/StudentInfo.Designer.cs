@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gcStudentInfo = new DevExpress.XtraGrid.GridControl();
             this.gvStudentInfo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.FirstName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -56,6 +57,8 @@
             this.cbeCivilStatus = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcStudentInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStudentInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teFirstName.Properties)).BeginInit();
@@ -67,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbeCivilStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcStudentInfo
@@ -88,7 +92,8 @@
             this.Sex,
             this.CivilStatus,
             this.Address,
-            this.Contact});
+            this.Contact,
+            this.gridColumn1});
             this.gvStudentInfo.GridControl = this.gcStudentInfo;
             this.gvStudentInfo.Name = "gvStudentInfo";
             this.gvStudentInfo.OptionsCustomization.CustomizationFormSearchBoxVisible = true;
@@ -192,7 +197,7 @@
             // 
             this.btnDelete.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
             this.btnDelete.Appearance.Options.UseBackColor = true;
-            this.btnDelete.Location = new System.Drawing.Point(779, 195);
+            this.btnDelete.Location = new System.Drawing.Point(788, 195);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(94, 29);
             this.btnDelete.TabIndex = 10;
@@ -243,7 +248,7 @@
             // 
             this.btnUpdate.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question;
             this.btnUpdate.Appearance.Options.UseBackColor = true;
-            this.btnUpdate.Location = new System.Drawing.Point(679, 195);
+            this.btnUpdate.Location = new System.Drawing.Point(681, 195);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 29);
             this.btnUpdate.TabIndex = 9;
@@ -359,6 +364,15 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Form";
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Function";
+            this.gridColumn1.MinWidth = 25;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 7;
+            this.gridColumn1.Width = 94;
+            // 
             // StudentInfo
             // 
             this.Appearance.BackColor = System.Drawing.Color.Black;
@@ -384,6 +398,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -418,6 +433,8 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.Columns.GridColumn Sex;
         private DevExpress.XtraGrid.Columns.GridColumn CivilStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }
 
